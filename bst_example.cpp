@@ -29,12 +29,69 @@ class BinarySearchTree {
 
   // Insert (loop)
   void Insert(const T& value) {
-    // TODO: implement the insert function using loops
+    TreeNode* newNode = new TreeNode(value);
+
+    if (root == nullptr) {
+      root = newNode;
+      return;
+    }
+
+    TreeNode* current = root;
+
+    while (true) {
+      if (current->data > value) {
+        if (current->left == nullptr) {
+          current->left = newNode;
+          return;
+        } else {
+          current = current->left;
+        }
+      } else if (current->data < value) {
+        if (current->right == nullptr) {
+          current->right = newNode;
+          return;
+        } else {
+          current = current->right;
+        }
+      } else {
+        return;
+      }
+    }
   }
 
   // Remove (loop)
   void Remove(const T& value) {
-    // TODO: implement the remove function using loops
+    if (root == nullptr) {
+      return;
+    }
+
+
+    TreeNode* current = root;
+    TreeNode* parent = nullptr;
+    if (current->data == value) {
+      if (current->left != nullptr && current!= nullptr) {
+        current->left->right = current->right;
+        delete current;
+      } else {
+        delete current;
+      }
+    }
+
+    while (true) {
+      if (current->data > value) {
+        parent = current;
+        current = current->left;
+        if (current->data == value) {
+
+        }
+      } else if (current->data < value) {
+        parent = current;
+        current = current->right;
+        if (current->data == value) {
+
+        }
+      }
+    }
   }
 };
 
